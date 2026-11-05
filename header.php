@@ -4,6 +4,11 @@ if (!isset($site_title)) $site_title = getSetting($pdo, 'site_title', 'Dance Clu
 
 $current_page = basename($_SERVER['PHP_SELF']);
 
+// Logo caricato dal pannello (Impostazioni -> Logo).
+// Se non c'e', resta il logotipo tipografico qui sotto.
+$brand_logo = getSetting($pdo, 'site_logo', '');
+if ($brand_logo === '' || !is_file(__DIR__ . '/' . $brand_logo)) $brand_logo = '';
+
 $nav_items = [
     'index.php'    => 'Home',
     'storia.php'   => 'Storia',
@@ -16,8 +21,13 @@ $nav_items = [
 <header class="site-header">
     <div class="site-header__inner">
         <a class="brand" href="index.php" aria-label="<?php echo e($site_title); ?> — home">
-            <span class="brand__name"><?php echo e($site_title); ?></span>
-            <span class="brand__tag">Scuola di ballo · dal 2001</span>
+            <?php if ($brand_logo): ?>
+                <img class="brand__logo" src="<?php echo e($brand_logo); ?>" alt="<?php echo e($site_title); ?>">
+            <?php endif; ?>
+            <span class="brand__text">
+                <span class="brand__name"><?php echo e($site_title); ?></span>
+                <span class="brand__tag">Scuola di ballo · dal 2001</span>
+            </span>
         </a>
 
         <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="main-nav">

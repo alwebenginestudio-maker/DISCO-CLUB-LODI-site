@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isAdmin && csrf_ok() && !isset($_P
         }
 
         logAdminAction('Impostazioni aggiornate', "$saved campi");
-        $success_msg = $error_msg ?: "Impostazioni salvate ($saved campi aggiornati).";
+        $success_msg = $error_msg ? '' : "Impostazioni salvate ($saved campi aggiornati).";
     }
 
     /* --- Rimozione immagini (logo, hero) --- */

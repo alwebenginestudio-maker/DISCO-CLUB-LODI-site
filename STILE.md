@@ -173,7 +173,11 @@ mantiene solo un riepilogo con il link alla storia.
 - Gradienti radiali, bagliori, ombre colorate, testi in gradiente.
 - Card corsi scure alternate a card chiare.
 - Logo immagine "latin club EVENTS" nell'header: sostituito dal logotipo
-  tipografico. La favicon resta il quadrato nero/lilla.
+  tipografico. Dal 5/11/2026, se nel pannello (Impostazioni → Logo) è
+  caricato un logo, compare **a sinistra accanto al testo** (classe
+  `brand__logo`, 46px di altezza, 38px su mobile); senza logo resta solo il
+  logotipo tipografico. La favicon resta il quadrato nero/lilla
+  (`assets/img/favicon.png`), che ha la precedenza sul logo caricato.
 - `assets/js/main.js` (countdown, filtri, lightbox): rimosso.
 
 ## Note su AL WebEngine
