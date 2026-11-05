@@ -1,5 +1,5 @@
 # ============================================================
-# .gitignore - Lavanderia Nord Servizi
+# .gitignore - Disco Club Lodi (discoclublodi.it)
 # ============================================================
 
 # ============================================================
@@ -30,13 +30,11 @@ install.php
 
 # ============================================================
 # IMMAGINI CARICATE DAGLI UTENTI (via admin)
-# Mantiene solo i file di default del tema
+# Le immagini del sito (loghi, favicon, foto venue) VANNO su GitHub:
+# restano fuori solo quelle caricate a runtime dal pannello admin.
 # ============================================================
-assets/img/*
-!assets/img/ALwebengine-logo.jpg
-!assets/img/footer-logo.png
-!assets/img/default-hero.jpg
-!assets/img/.htaccess
+assets/img/uploads/*
+assets/img/locandine/*
 
 # ============================================================
 # FILE DI SISTEMA OPERATIVO
