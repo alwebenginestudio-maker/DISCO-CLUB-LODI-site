@@ -5,7 +5,7 @@ require_once 'functions.php';
 // --- IMPOSTAZIONI (modificabili dal pannello admin) ---
 $site_title      = getSetting($pdo, 'site_title', 'Dance Club Lodi');
 $site_desc       = getSetting($pdo, 'site_description', '');
-$site_logo       = getSetting($pdo, 'site_logo', 'assets/img/latinclub-wordmark.png');
+$site_logo       = getSetting($pdo, 'site_logo', '');
 $hero_title      = getSetting($pdo, 'hero_title', '');
 $hero_text       = getSetting($pdo, 'hero_text', '');
 $hero_image      = getSetting($pdo, 'hero_image', '');

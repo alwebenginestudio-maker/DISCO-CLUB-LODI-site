@@ -4,7 +4,7 @@ require_once 'functions.php';
 
 $site_title      = getSetting($pdo, 'site_title', 'Dance Club Lodi');
 $site_desc       = getSetting($pdo, 'site_description', '');
-$site_logo       = getSetting($pdo, 'site_logo', 'assets/img/latinclub-wordmark.png');
+$site_logo       = getSetting($pdo, 'site_logo', '');
 $contatti_title  = getSetting($pdo, 'contatti_title', 'Parliamone');
 $contatti_text   = getSetting($pdo, 'contatti_text', '');
 $phone           = getSetting($pdo, 'phone', '');

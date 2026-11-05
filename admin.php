@@ -769,7 +769,7 @@ $statusMap  = ['nuovo' => 'new', 'letto' => 'read', 'gestito' => 'done'];
                     <?php endif; ?>
                 </div>
             </div>
-            <div class="field-hint">PNG, JPG, SVG, WebP. Max 1 MB.</div>
+            <div class="field-hint">JPG, PNG o WebP. Max 1 MB. Compare a sinistra nel titolo del sito e viene usato come icona del browser (favicon).</div>
         </div>
         <div class="form-group">
             <label>Immagine hero (sfondo home)</label>

@@ -107,14 +107,11 @@ function updateSetting($pdo, $key, $value) {
 
 /**
  * Restituisce l'HTML del tag favicon.
- * Preferisce la favicon dedicata (quadrato LATIN CLUB nero/oro); se manca,
- * usa il logo caricato dal pannello.
+ * Preferisce il logo caricato dal pannello (Impostazioni -> Logo); se non
+ * c'e', usa la favicon dedicata (quadrato LATIN CLUB nero/oro).
  */
 function renderFavicon($site_logo) {
     $fallback = 'assets/img/favicon.png';
-    if (file_exists(__DIR__ . '/' . $fallback)) {
-        return '<link rel="icon" type="image/png" href="' . $fallback . '">';
-    }
     if ($site_logo && file_exists(__DIR__ . '/' . $site_logo)) {
         $ext = strtolower(pathinfo($site_logo, PATHINFO_EXTENSION));
         $type = 'image/x-icon';

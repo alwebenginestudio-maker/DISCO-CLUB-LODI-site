@@ -4,7 +4,7 @@ require_once 'functions.php';
 
 $site_title      = getSetting($pdo, 'site_title', 'Dance Club Lodi');
 $site_desc       = getSetting($pdo, 'site_description', '');
-$site_logo       = getSetting($pdo, 'site_logo', 'assets/img/latinclub-wordmark.png');
+$site_logo       = getSetting($pdo, 'site_logo', '');
 $soci_note       = getSetting($pdo, 'soci_note', '');
 $founding_year   = getSetting($pdo, 'founding_year', '2001');
 $storia_title    = getSetting($pdo, 'chi_siamo_title', 'La nostra storia');

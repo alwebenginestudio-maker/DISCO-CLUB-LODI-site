@@ -3,7 +3,7 @@ require_once 'config.php';
 require_once 'functions.php';
 
 $site_title      = getSetting($pdo, 'site_title', 'Dance Club Lodi');
-$site_logo       = getSetting($pdo, 'site_logo', 'assets/img/latinclub-wordmark.png');
+$site_logo       = getSetting($pdo, 'site_logo', '');
 $primary_color   = getSetting($pdo, 'primary_color', '#6D4AA8');
 $secondary_color = getSetting($pdo, 'secondary_color', '#1C1626');
 $accent_color    = getSetting($pdo, 'accent_color', '#7E5BB3');

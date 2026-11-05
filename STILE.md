@@ -176,8 +176,12 @@ mantiene solo un riepilogo con il link alla storia.
   tipografico. Dal 5/11/2026, se nel pannello (Impostazioni → Logo) è
   caricato un logo, compare **a sinistra accanto al testo** (classe
   `brand__logo`, 46px di altezza, 38px su mobile); senza logo resta solo il
-  logotipo tipografico. La favicon resta il quadrato nero/lilla
-  (`assets/img/favicon.png`), che ha la precedenza sul logo caricato.
+  logotipo tipografico.
+- Favicon: dal 5/11/2026 vale il **logo caricato dal pannello**
+  (`renderFavicon()` controlla prima `site_logo`); se non c'è, resta il
+  quadrato nero/lilla di default (`assets/img/favicon.png`). Per questo le
+  pagine leggono `site_logo` con default vuoto: il vecchio default
+  (`latinclub-wordmark.png`) farebbe vincere il wordmark sulla favicon.
 - `assets/js/main.js` (countdown, filtri, lightbox): rimosso.
 
 ## Note su AL WebEngine
