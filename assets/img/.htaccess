@@ -1,0 +1,24 @@
+# ============================================================
+# assets/img - cartella di destinazione degli upload
+# ============================================================
+# Qui dentro non deve girare nessuno script: e' dove finiscono i
+# file caricati dal pannello admin. Era l'unico dei quattro siti
+# senza questo blocco (AL WEBENGINE, NORDSERVIZI e VIDARDI BASKET
+# lo hanno gia').
+#
+# I due IfModule rendono la regola compatibile sia con Apache 2.4
+# (mod_authz_core -> "Require") sia con 2.2 ("Deny"): e' lo stesso
+# schema gia' usato nel .htaccess principale di VIDARDI BASKET.
+#
+# Estensioni: la lista e' quella della regola principale di questo
+# sito. Verificato che in assets/img non esiste alcun file con
+# queste estensioni, quindi niente puo' smettere di funzionare.
+<FilesMatch "\.(php|phtml|php3|php4|php5|phar|cgi|pl|py|sh)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

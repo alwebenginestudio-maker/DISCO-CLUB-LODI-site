@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin.php
+Disallow: /download.php
+Disallow: /install.php
+Disallow: /database/
+Disallow: /config.php
+Disallow: /functions.php
+Disallow: /admin_log.txt
+
+# Sostituire il dominio definitivo prima della pubblicazione
+# Sitemap: https://www.dominio-tuo.it/sitemap.php

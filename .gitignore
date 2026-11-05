@@ -1,0 +1,82 @@
+# ============================================================
+# .gitignore - Lavanderia Nord Servizi
+# ============================================================
+
+# ============================================================
+# DATABASE (contiene dati di produzione, NON deve mai finire su GitHub)
+# ============================================================
+database/*.db
+database/*.sqlite
+database/*.sqlite3
+database/*.db-shm
+database/*.db-wal
+database/*.db-journal
+
+# Backup database
+database/*backup*
+
+# ============================================================
+# LOG (contengono dati sensibili degli utenti)
+# ============================================================
+admin_log.txt
+contacts.log
+admin_errors.log
+*.log
+
+# ============================================================
+# FILE DI INSTALLAZIONE (da rimuovere dopo il setup)
+# ============================================================
+install.php
+
+# ============================================================
+# IMMAGINI CARICATE DAGLI UTENTI (via admin)
+# Mantiene solo i file di default del tema
+# ============================================================
+assets/img/*
+!assets/img/ALwebengine-logo.jpg
+!assets/img/footer-logo.png
+!assets/img/default-hero.jpg
+!assets/img/.htaccess
+
+# ============================================================
+# FILE DI SISTEMA OPERATIVO
+# ============================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ============================================================
+# IDE / EDITOR
+# ============================================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ============================================================
+# DIPENDENZE E BUILD (se userai npm/composer in futuro)
+# ============================================================
+node_modules/
+vendor/
+package-lock.json
+composer.lock
+
+# ============================================================
+# FILE TEMPORANEI
+# ============================================================
+*.tmp
+*.temp
+*.bak
+*.orig
+*.log
+cache/
+tmp/

@@ -1,0 +1,126 @@
+# ============================================================
+# AL WebENGINE — Latin Club Lodi (Dance Club SSD)
+# Apache .htaccess
+# ============================================================
+
+# Charset
+AddDefaultCharset UTF-8
+
+# Disattiva il listing delle directory
+Options -Indexes
+
+# Nasconde la versione del server
+ServerSignature Off
+
+# ============================================================
+# PROTEZIONE FILE SENSIBILI
+# ============================================================
+# Database SQLite, log, backup, config
+<FilesMatch "\.(db|sqlite|sqlite3|log|txt|md|json|lock|bak|ini|yml|yaml)$">
+    Require all denied
+</FilesMatch>
+
+# File PHP di sistema (admin_log.txt è già coperto sopra)
+# download.php non è bloccato qui: ha già login sviluppatore + CSRF + area sbloccata
+<FilesMatch "^(config|functions|admin-helpers|install)\.php$">
+    Require all denied
+</FilesMatch>
+
+# robots.txt deve restare leggibile ai motori di ricerca
+<Files "robots.txt">
+    Require all granted
+</Files>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # In uploads solo immagini: niente esecuzione di script
+    # NB: serve .*\. e non \.  ->  altrimenti cerca un punto subito dopo
+    # "uploads/" e la regola non combacia mai con nulla (era rimasta morta).
+    RewriteRule ^assets/img/uploads/.*\.(php|phtml|phar|cgi|pl|py|sh)$ - [F,L]
+</IfModule>
+
+# .htaccess stesso e repository
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^\.git(/|$) - [F,L]
+    RewriteRule ^database(/|$) - [F,L]
+    RewriteRule ^backup(/|$) - [F,L]
+    RewriteRule ^logs(/|$) - [F,L]
+</IfModule>
+
+# ============================================================
+# SITEMAP - URL PULITO
+# ============================================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
+</IfModule>
+
+# ============================================================
+# HTTPS FORZATO (commentare in sviluppo locale)
+# ============================================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTP_HOST} !^localhost [NC]
+    RewriteCond %{HTTP_HOST} !^127\.0\.0\.1 [NC]
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
+
+# ============================================================
+# COMPRESSIONE GZIP
+# ============================================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+    AddOutputFilterByType DEFLATE application/javascript application/json
+    AddOutputFilterByType DEFLATE application/xml image/svg+xml
+</IfModule>
+
+# ============================================================
+# CACHE BROWSER
+# ============================================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css                  "access plus 1 year"
+    ExpiresByType application/javascript    "access plus 1 year"
+    ExpiresByType image/jpeg                "access plus 1 year"
+    ExpiresByType image/png                 "access plus 1 year"
+    ExpiresByType image/webp                "access plus 1 year"
+    ExpiresByType image/svg+xml             "access plus 1 year"
+    ExpiresByType image/x-icon              "access plus 1 year"
+    ExpiresByType font/woff2                "access plus 1 year"
+    ExpiresByType text/html                 "access plus 0 seconds"
+</IfModule>
+
+# ============================================================
+# SICUREZZA HEADERS
+# ============================================================
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+    # HSTS - attivare solo dopo aver verificato che HTTPS funziona stabilmente
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # Rimuove header che rivelano informazioni
+    Header unset X-Powered-By
+    Header always unset X-Powered-By
+</IfModule>
+
+# ============================================================
+# PHP - LIMITI UPLOAD
+# ============================================================
+<IfModule mod_php.c>
+    php_value upload_max_filesize 8M
+    php_value post_max_size 12M
+    php_value max_execution_time 60
+    php_value memory_limit 128M
+</IfModule>
+
+# ============================================================
+# ERRORI
+# ============================================================
+ErrorDocument 404 /index.php
